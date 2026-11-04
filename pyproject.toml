@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling>=1.33"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mesh-bestfit"
+version = "0.1.0"
+description = "Mesh-candidate BestFit synthetic document-layout generator"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BSD-3-Clause"
+dependencies = [
+  "numpy>=2.2.6",
+  "pillow>=12.3",
+  "typer>=0.27",
+  "pydantic>=2.14",
+  "orjson>=3.13",
+  "rich>=15",
+  "tomli>=2.5; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+augment = ["opencv-python-headless>=5.0,<6"]
+
+[project.scripts]
+mesh-bestfit = "meshbestfit.cli:app"
+
+[dependency-groups]
+dev = [
+  "pytest>=9.2",
+  "hypothesis>=6.168",
+  "pytest-benchmark>=5.3",
+  "ruff>=0.17",
+  "mypy>=2.4",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/meshbestfit"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+# E/F: Flake8, W: pycodestyle, A: flake8-builtins, PLC/PLE/PLW: Pylint, I: isort
+select = ["E", "F", "W", "A", "PLC", "PLE", "PLW", "I", "UP", "B", "SIM", "NPY", "PERF"]
+
+[tool.ruff.lint.per-file-ignores]
+# UP007/UP045: spec: Optional[...] in Typer signatures; PLC0415: commands import their heavy modules lazily
+"src/meshbestfit/cli.py" = ["UP007", "UP045", "PLC0415"]
+"tests/*" = ["E501", "SIM300", "B905"]
+
+[tool.ruff.format]
+# Like Black
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+strict = true
+python_version = "3.10"
+
+[[tool.mypy.overrides]]
+module = ["tomllib", "tomli"]  # not importable on every Python the checker targets
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

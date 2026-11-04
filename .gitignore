@@ -1,0 +1,11 @@
+.benchmarks
+.codegraph
+.hypothesis
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.venv
+
+datasets/
+work/
+*.pyc
