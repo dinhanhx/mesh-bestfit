@@ -28,8 +28,6 @@ uv sync --extra augment    # also installs OpenCV, needed only by `pool augment`
 uv run mesh-bestfit --help
 ```
 
-[Unverified] Only Linux has been tested; macOS and Windows have not been run.
-
 ## Quickstart
 
 Input: a COCO dataset folder with `images/<subset>/` and `annotations/instances_<subset>.json`
