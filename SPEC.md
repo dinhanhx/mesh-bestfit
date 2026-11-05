@@ -4,7 +4,7 @@ Oct 31, 2026 · @Anh Vu Dinh
 
 ## 1. Scope and goals
 
-`mesh-bestfit` is a Python CLI that turns a COCO-annotated document dataset into synthetic layout-detection pages: it crops an element pool, places elements with Mesh-candidate BestFit, renders the pages, and writes labels. It replaces the seven scripts and one notebook in the uploaded repo snapshot.
+`mesh-bestfit` is a Python CLI that turns a COCO-annotated document dataset into synthetic layout-detection pages: it crops an element pool, places elements with Mesh-candidate BestFit, renders the pages, and writes labels. It replaces the seven scripts and one notebook in the [DocLayout-YOLO repo](https://github.com/opendatalab/DocLayout-YOLO/).
 
 &#91;Inference\] Sections 2 and 3 cite the repo files or the two papers directly. Everything else (command names, schemas, the speed-up in section 6) is a design proposal. Items I could not verify are tagged \[Unverified\] or \[Inference\].
 
@@ -29,7 +29,7 @@ Oct 31, 2026 · @Anh Vu Dinh
 
 ## 2. Algorithm source
 
-The repo code and Paper 2 (Appendix E) agree on the core loop; they differ on stop rules and pool source, so the spec ships two presets. Sources: the uploaded repo snapshot, Paper 1 (*DocLayout-YOLO: Enhancing Document Layout Analysis…*, file `…Arxiv241012628`) and Paper 2 (*DocLayout-YOLO: Axis-Attentive … Mesh-Guided Synthetic Pretraining*, file `…Arxiv261028171`).
+The repo code and Paper 2 (Appendix E) agree on the core loop; they differ on stop rules and pool source, so the spec ships two presets. Sources: the [DocLayout-YOLO repo](https://github.com/opendatalab/DocLayout-YOLO/), [Paper 1](https://arxiv.org/abs/2410.12628) (*DocLayout-YOLO: Enhancing Document Layout Analysis…*) and [Paper 2](https://arxiv.org/abs/2610.28171) (*DocLayout-YOLO: Axis-Attentive … Mesh-Guided Synthetic Pretraining*).
 
 | Item | Repo snapshot | Paper 2 (App. E) | Paper 1 (App. A) |
 | --- | --- | --- | --- |
@@ -976,9 +976,9 @@ I confirmed that `uv pip install --resolution` accepts `lowest-direct`, and that
 
 **Sources**
 
-- Uploaded repo snapshot `opendatalab_DocLayout-YOLO_main_mesh-candidate_bestfit.zip` (README, `bestfit_generator.py`, `rendering.py`, `augmentation.py`, `map_dict.py`, `combine_layouts.py`, `utils/`, `visualize.ipynb`).
-- Paper 1: *DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception* (project file, 15 pages): Section 3, Appendix A.2–A.3.
-- Paper 2: *DocLayout-YOLO: Axis-Attentive Document Layout Detector with Mesh-Guided Synthetic Pretraining* (project file, 35 pages): Section 3, Appendix E.
+- Repo: https://github.com/opendatalab/DocLayout-YOLO/ (README, `bestfit_generator.py`, `rendering.py`, `augmentation.py`, `map_dict.py`, `combine_layouts.py`, `utils/`, `visualize.ipynb`).
+- Paper 1: *DocLayout-YOLO: Enhancing Document Layout Analysis through Diverse Synthetic Data and Global-to-Local Adaptive Perception*, https://arxiv.org/abs/2410.12628: Section 3, Appendix A.2–A.3.
+- Paper 2: *DocLayout-YOLO: Axis-Attentive Document Layout Detector with Mesh-Guided Synthetic Pretraining*, https://arxiv.org/abs/2610.28171: Section 3, Appendix E.
 - Dependency versions: PyPI JSON API, queried 2026-10-31, e.g. [numpy](https://pypi.org/pypi/numpy/json), [pillow](https://pypi.org/pypi/pillow/json), [pymupdf](https://pypi.org/pypi/pymupdf/json); same endpoint for each package in section 3.
 - Development dataset: `datasets/doclaynet/` (DocLayNet-small layout: `annotations/`, `images/`, `pdfs/` per split); reference given with the task: https://huggingface.co/datasets/pierreguillou/DocLayNet-small (not opened).
 - Dataset format: CVAT, https://docs.cvat.ai/docs/dataset_management/formats/format-coco/ (tree, `instances_<subset>.json`, boxes when `segmentation` is empty); COCO data format, https://cocodataset.org/#format-data (that page renders no content when fetched, so the field list was read from its source file `dataset/format-data.htm` in the `cocodataset/cocodataset.github.io` repository); Datumaro COCO page, https://open-edge-platform.github.io/datumaro/latest/docs/data-formats/formats/coco.html (`images/<subset>/`, `<task>_<subset>.json`, category id 0).

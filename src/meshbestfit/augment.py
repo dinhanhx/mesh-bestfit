@@ -2,7 +2,7 @@
 
 Operations follow the list in spec section 2 (brightness/contrast, resized crop, Sobel, elastic,
 Gaussian noise, optional flip). Their strengths are this package's own choices: the repo's
-`augmentation.py` was not available when this was written.
+`augmentation.py` (github.com/opendatalab/DocLayout-YOLO) was not available when this was written.
 """
 
 from __future__ import annotations

@@ -76,7 +76,7 @@ class RenderConfig(_Model):
 
 
 class AugmentConfig(_Model):
-    flip: bool = True  # Paper 1 adds a random flip; the repo does not
+    flip: bool = True  # Paper 1 (arxiv.org/abs/2410.12628) adds a random flip; the repo does not
 
 
 class Settings(_Model):

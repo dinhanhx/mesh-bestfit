@@ -26,7 +26,7 @@ def _mean(v: list[float] | list[int]) -> float:
 
 
 def compute_stats(records: Iterable[LayoutRecord]) -> dict[str, Any]:
-    """Density = sum of box areas / page area (Paper 1 Eq. 7), alignment, and counts."""
+    """Density = sum of box areas / page area (Paper 1 Eq. 7, arxiv.org/abs/2410.12628), alignment, counts."""
     pages = 0
     density: list[float] = []
     align: list[float] = []
